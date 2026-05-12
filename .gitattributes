@@ -1,0 +1,10 @@
+# Normalize line endings to LF in the repo; check out as-is on all platforms
+* text=auto eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+
+# Treat PDFs as binary
+*.pdf binary

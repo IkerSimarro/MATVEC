@@ -1,0 +1,18 @@
+{
+  "R_n_m": 0.15,
+  "alt_km": 25.0,
+  "char_len_m": 32.7,
+  "design_lifetime_hours": 3000.0,
+  "flight_duration_s": 5400.0,
+  "flight_profile": [],
+  "g_load": 2.5,
+  "mach": 3.2,
+  "mass_kg": 30600.0,
+  "matvec_version": "1.0.0",
+  "notes": "Lockheed SR-71 reconnaissance aircraft. Sustained Mach 3.2 cruise at high altitude --- a classic high-speed airframe useful for seeing how the tool handles long-duration supersonic heating.",
+  "options": {},
+  "panel_thickness_m": 0.0015,
+  "system_label": "SR-71 Blackbird",
+  "vehicle_category": "aircraft",
+  "wall_emissivity": 0.85
+}

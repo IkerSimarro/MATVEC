@@ -1,0 +1,18 @@
+{
+  "R_n_m": 0.4,
+  "alt_km": 18.0,
+  "char_len_m": 61.66,
+  "design_lifetime_hours": 25000.0,
+  "flight_duration_s": 10800.0,
+  "flight_profile": [],
+  "g_load": 2.0,
+  "mach": 2.04,
+  "mass_kg": 78000.0,
+  "matvec_version": "1.0.0",
+  "notes": "Aerospatiale-BAC Concorde supersonic airliner. Sustained Mach 2 trans-Atlantic cruise. Useful for seeing how a long-lifetime commercial-aviation envelope screens against sustained heating and creep.",
+  "options": {},
+  "panel_thickness_m": 0.002,
+  "system_label": "Concorde",
+  "vehicle_category": "aircraft",
+  "wall_emissivity": 0.85
+}

@@ -1,0 +1,18 @@
+{
+  "R_n_m": 0.05,
+  "alt_km": 9.0,
+  "char_len_m": 3.0,
+  "design_lifetime_hours": 1.0,
+  "flight_duration_s": 25.0,
+  "flight_profile": [],
+  "g_load": 15.0,
+  "mach": 2.0,
+  "mass_kg": 30.0,
+  "matvec_version": "1.0.0",
+  "notes": "IREC / Spaceport America Cup competition rocket. Mach 2 boost-coast trajectory to about 9 km apogee, single-flight student airframe. Useful for amateur and university rocketry projects.",
+  "options": {},
+  "panel_thickness_m": 0.003,
+  "system_label": "Collegiate Sounding Rocket",
+  "vehicle_category": "general",
+  "wall_emissivity": 0.85
+}
