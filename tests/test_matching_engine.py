@@ -5,9 +5,9 @@ stdlib unittest only. Run: python -m unittest test_matching_engine.py -v
 
 import unittest
 
-from materials_db import MATERIALS_DB, get_materials_by_regime, get_strength_at_temperature
-from physics_engine import run_analysis
-from matching_engine import (
+from core.materials_db import MATERIALS_DB, get_materials_by_regime, get_strength_at_temperature
+from core.physics_engine import run_analysis
+from core.matching_engine import (
     match_materials,
     MARGINAL_STRUCTURAL_FRACTION,
     MaterialCandidate,
@@ -702,7 +702,7 @@ class TestReferenceVehicles(unittest.TestCase):
 
     def test_tps_coatings_populated_when_hot(self):
         """T_wall ≥ TPS_UNLOCK_TEMP_K must populate tps_coatings."""
-        from matching_engine import TPS_UNLOCK_TEMP_K
+        from core.matching_engine import TPS_UNLOCK_TEMP_K
         r = match_materials(
             _run(6.7, 30.0, 15195.0, 0.30, g_load=5.0),
             vehicle_category="aircraft",
@@ -724,7 +724,7 @@ class TestReferenceVehicles(unittest.TestCase):
     def test_tps_coatings_empty_when_cool(self):
         """T_wall < TPS_UNLOCK_TEMP_K (and category not in {reentry, hypersonic_aircraft})
         must leave tps_coatings empty."""
-        from matching_engine import TPS_UNLOCK_TEMP_K
+        from core.matching_engine import TPS_UNLOCK_TEMP_K
         r = match_materials(
             _run(3.2, 25.0, 30600.0, 0.15, g_load=2.5),
             vehicle_category="aircraft",

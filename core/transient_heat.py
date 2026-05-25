@@ -75,8 +75,8 @@ import math
 from dataclasses import dataclass, field
 from typing import Iterable, Sequence
 
-from materials_db import MaterialEntry
-from physics_engine import (
+from .materials_db import MaterialEntry
+from .physics_engine import (
     GAMMA_AIR, R_AIR, SIGMA_SB, C_SUTTON_GRAVES, RECOVERY_FACTOR,
     _isa_atmosphere,
 )

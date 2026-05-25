@@ -5,7 +5,7 @@ Tests for core/creep.py — Larson-Miller creep evaluation.
 import math
 import unittest
 
-from materials_db import MATERIALS_DB
+from core.materials_db import MATERIALS_DB
 from core.creep import (
     CREEP_MARGIN_FRACTION,
     CREEP_NOT_APPLICABLE_T_FRAC,
@@ -285,7 +285,7 @@ class TestMarginConvention(unittest.TestCase):
         """The margin threshold for creep should match the structural
         threshold so the user's mental model stays consistent across
         stages."""
-        from matching_engine import MARGINAL_STRUCTURAL_FRACTION
+        from core.matching_engine import MARGINAL_STRUCTURAL_FRACTION
         self.assertEqual(CREEP_MARGIN_FRACTION, MARGINAL_STRUCTURAL_FRACTION)
 
     def test_creep_not_applicable_t_frac_is_sane(self):

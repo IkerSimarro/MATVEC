@@ -19,18 +19,18 @@ __version__ = "1.0.0"
 import math
 from dataclasses import dataclass, field
 
-from materials_db import (
+from .materials_db import (
     MATERIALS_DB,
     MaterialEntry,
     get_materials_by_regime,
     get_strength_at_temperature,
 )
-from physics_engine import PhysicsResult, E_REF_MPA, ALPHA_REF, THERMAL_RELIEF_FACTOR
-from core.creep import (
+from .physics_engine import PhysicsResult, E_REF_MPA, ALPHA_REF, THERMAL_RELIEF_FACTOR
+from .creep import (
     CREEP_MARGIN_FRACTION,
     evaluate_creep,
 )
-from core.transient_heat import integrate_panel
+from .transient_heat import integrate_panel
 
 
 # ---------------------------------------------------------------------------

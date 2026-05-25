@@ -10,7 +10,7 @@ import subprocess
 import tempfile
 import os
 
-from physics_engine import (
+from .physics_engine import (
     __version__ as _MATVEC_VERSION,
     C_SUTTON_GRAVES,
     SIGMA_SB,
@@ -20,14 +20,14 @@ from physics_engine import (
     GAMMA_AIR,
     STRUCTURAL_SAFETY_FACTOR,
 )
-from matching_engine import (
+from .matching_engine import (
     MatchResult,
     TPS_UNLOCK_TEMP_K,
     _ABLATIVE_SUBSTRATE_T_FLOOR_K,
 )
-from materials_db import MATERIALS_DB
-from core.pareto import compute_pareto, generate_pareto_chart_b64
-from core.surrogate import find_nearest_candidates, get_model_version
+from .materials_db import MATERIALS_DB
+from .pareto import compute_pareto, generate_pareto_chart_b64
+from .surrogate import find_nearest_candidates, get_model_version
 
 
 # ---------------------------------------------------------------------------

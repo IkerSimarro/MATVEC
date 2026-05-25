@@ -11,10 +11,10 @@ import datetime
 from pathlib import Path
 import streamlit as st
 
-from matching_engine import match_materials, TPS_UNLOCK_TEMP_K
-from physics_engine import run_analysis, envelope_summary
+from core.matching_engine import match_materials, TPS_UNLOCK_TEMP_K
+from core.physics_engine import run_analysis, envelope_summary
 from core.category_inference import infer_category
-from latex_export import generate_report, generate_tex_source
+from core.latex_export import generate_report, generate_tex_source
 from core.pareto import compute_pareto
 from core.surrogate import find_nearest_candidates
 # Canonical pipeline + JSON schema live in core.* so the CLI and tests

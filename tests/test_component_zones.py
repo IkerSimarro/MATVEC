@@ -10,8 +10,8 @@ stdlib unittest only. Run: python -m unittest test_component_zones.py -v
 
 import unittest
 
-from physics_engine import run_analysis
-from matching_engine import match_materials, MatchResult
+from core.physics_engine import run_analysis
+from core.matching_engine import match_materials, MatchResult
 from core.component_zones import (
     CATEGORY_ZONES,
     ComponentZone,

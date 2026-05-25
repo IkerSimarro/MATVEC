@@ -63,10 +63,10 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from physics_engine import run_analysis, PhysicsResult
-from matching_engine import match_materials, MatchResult
-from core.session import SessionSchema
-from core.api import apply_turbine_override
+from .physics_engine import run_analysis, PhysicsResult
+from .matching_engine import match_materials, MatchResult
+from .session import SessionSchema
+from .api import apply_turbine_override
 
 
 # ---------------------------------------------------------------------------

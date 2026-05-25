@@ -14,8 +14,8 @@ to pass incorrect data.
 import math
 import unittest
 
-import materials_db as db
-from materials_db import (
+import core.materials_db as db
+from core.materials_db import (
     MATERIALS_DB,
     VALID_CATEGORIES,
     VALID_REGIMES,
@@ -663,7 +663,7 @@ class TestAvailabilityScores(unittest.TestCase):
 
     def test_availability_default_is_commercial(self):
         """Materials without explicit override must default to 1.0."""
-        from materials_db import _AVAILABILITY_OVERRIDES
+        from core.materials_db import _AVAILABILITY_OVERRIDES
         for mat in MATERIALS_DB:
             if mat.name not in _AVAILABILITY_OVERRIDES:
                 self.assertEqual(mat.availability_score, 1.0,

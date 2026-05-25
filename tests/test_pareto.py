@@ -7,8 +7,8 @@ import unittest
 
 import numpy as np
 
-from physics_engine import run_analysis
-from matching_engine import match_materials
+from core.physics_engine import run_analysis
+from core.matching_engine import match_materials
 from core.pareto import compute_pareto, ParetoResult, _dominates
 
 
@@ -111,7 +111,7 @@ class TestParetoReferenceVehicles(unittest.TestCase):
 
     def test_availability_default_is_commercial(self):
         """Front members not in availability overrides default to 1.0."""
-        from materials_db import _AVAILABILITY_OVERRIDES
+        from core.materials_db import _AVAILABILITY_OVERRIDES
         pareto, _ = _pareto_for(3.2, 25.0, 30600.0, 0.15, 2.5, "aircraft")
         for c in pareto.pareto_front:
             if c.material.name not in _AVAILABILITY_OVERRIDES:
@@ -233,8 +233,8 @@ class TestParetoCostAxis(unittest.TestCase):
     def test_cost_ceiling_changes_objective_scale(self):
         """A tighter ceiling makes the cost column bigger (more
         penalising) for the same candidates."""
-        from physics_engine import run_analysis
-        from matching_engine import match_materials
+        from core.physics_engine import run_analysis
+        from core.matching_engine import match_materials
         from core.pareto import compute_pareto
 
         physics = run_analysis(3.2, 25.0, 30600.0, 0.15, peak_g_load=2.5)

@@ -38,7 +38,7 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from materials_db import get_strength_at_temperature
+from .materials_db import get_strength_at_temperature
 
 
 # ---------------------------------------------------------------------------
@@ -515,7 +515,7 @@ def _substrate_reference_conditions(physics_result) -> tuple[float, float]:
     the purpose of partitioning.
     """
     # Local import avoids a circular dependency at module import time.
-    from matching_engine import _ABLATIVE_SUBSTRATE_T_FLOOR_K
+    from .matching_engine import _ABLATIVE_SUBSTRATE_T_FLOOR_K
 
     T_ambient = physics_result.thermal.T_ambient_K
     T_soak = max(T_ambient, _ABLATIVE_SUBSTRATE_T_FLOOR_K)

@@ -10,7 +10,7 @@ Run: python -m unittest test_transient_heat.py -v
 import math
 import unittest
 
-from materials_db import MATERIALS_DB
+from core.materials_db import MATERIALS_DB
 from core.transient_heat import (
     TransientHeatResult,
     DEFAULT_N_NODES,
@@ -196,7 +196,7 @@ class TestPhysicsLimits(unittest.TestCase):
         T_rec = _recovery_temp(T_amb, 2.0)
         # Lumped ODE solve with ample resolution.
         rho, cp, L = al.density_kgm3, al.specific_heat_J_kgK, 0.002
-        from physics_engine import _isa_atmosphere
+        from core.physics_engine import _isa_atmosphere
         T_amb_isa, _p, rho_atm = _isa_atmosphere(9.0)
         q_cold = _stagnation_heat_flux_coldwall(rho_atm, 2.0, 0.30, T_amb_isa)
         T_rec_isa = _recovery_temp(T_amb_isa, 2.0)

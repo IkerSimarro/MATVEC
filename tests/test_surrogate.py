@@ -6,9 +6,9 @@ stdlib unittest only. Run: python -m unittest test_surrogate.py -v
 import unittest
 import copy
 
-from materials_db import MATERIALS_DB, MaterialEntry
-from physics_engine import run_analysis
-from matching_engine import match_materials
+from core.materials_db import MATERIALS_DB, MaterialEntry
+from core.physics_engine import run_analysis
+from core.matching_engine import match_materials
 from core.surrogate import (
     build_surrogate,
     find_nearest_candidates,

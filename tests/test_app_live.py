@@ -26,6 +26,9 @@ from pathlib import Path
 os.environ.setdefault("STREAMLIT_SERVER_HEADLESS", "true")
 os.environ.setdefault("STREAMLIT_BROWSER_GATHER_USAGE_STATS", "false")
 
+# app.py lives at the project root, one level above tests/
+_APP_PATH = str(Path(__file__).resolve().parent.parent / "app.py")
+
 from streamlit.testing.v1 import AppTest  # noqa: E402
 
 import app  # noqa: E402
@@ -42,14 +45,14 @@ def _safe_get(state, key, default=None):
 
 
 def _run_default():
-    at = AppTest.from_file("app.py", default_timeout=30)
+    at = AppTest.from_file(_APP_PATH,default_timeout=30)
     at.run()
     return at
 
 
 def _run_with_category_override(category):
     """Pin the category override (skipping the auto-inference branch)."""
-    at = AppTest.from_file("app.py", default_timeout=30)
+    at = AppTest.from_file(_APP_PATH,default_timeout=30)
     at.session_state["category_override"] = category
     at.run()
     return at
@@ -57,7 +60,7 @@ def _run_with_category_override(category):
 
 def _run_with_bundled_example(display_label):
     """Drive the new 'Load bundled example' dropdown directly by label."""
-    at = AppTest.from_file("app.py", default_timeout=30)
+    at = AppTest.from_file(_APP_PATH,default_timeout=30)
     at.session_state["bundled_example_select"] = display_label
     at.run()
     return at
@@ -244,7 +247,7 @@ class TestMainCanvasFormHierarchy(unittest.TestCase):
         """When the user picks the turbine category, the metric strip
         should show the hot-section override + creep-derate + reference-
         frame note INSTEAD of the misleading freestream metrics."""
-        at = AppTest.from_file("app.py", default_timeout=30)
+        at = AppTest.from_file(_APP_PATH,default_timeout=30)
         at.session_state["category_override"] = "turbine"
         at.run()
         labels = [m.label for m in at.metric]
@@ -284,7 +287,7 @@ class TestComponentZonesLive(unittest.TestCase):
     via latex_export._sec_component_zones; the UI was the missing half."""
 
     def _run_sr71_envelope(self):
-        at = AppTest.from_file("app.py", default_timeout=30)
+        at = AppTest.from_file(_APP_PATH,default_timeout=30)
         at.session_state["mach"]              = 3.2
         at.session_state["alt_km"]            = 25.0
         at.session_state["mass_kg"]           = 30600.0
@@ -472,7 +475,7 @@ class TestBundledPresetDirectStaging(unittest.TestCase):
         # the selectbox's session key. The top-of-sidebar stager
         # should observe the choice, find the matching JSON, and
         # write design_lifetime_hours + panel_thickness_mm directly.
-        at = AppTest.from_file("app.py", default_timeout=60)
+        at = AppTest.from_file(_APP_PATH,default_timeout=60)
         at.session_state["bundled_example_select"] = "SR-71 Blackbird"
         at.run()
         self.assertEqual(
@@ -497,7 +500,7 @@ class TestBundledPresetDirectStaging(unittest.TestCase):
         """Once ``_last_bundled_loaded`` matches the dropdown choice,
         the stager must NOT re-apply preset values — otherwise manual
         widget edits would be clobbered on the next sidebar repaint."""
-        at = AppTest.from_file("app.py", default_timeout=60)
+        at = AppTest.from_file(_APP_PATH,default_timeout=60)
         at.session_state["bundled_example_select"] = "SR-71 Blackbird"
         at.session_state["_last_bundled_loaded"] = "SR-71 Blackbird"
         # Simulate the user having edited the lifetime AFTER the
@@ -533,7 +536,7 @@ class TestExportPlumbsPhase7Kwargs(unittest.TestCase):
         panel_thickness_m into _show_export. Without this the PDF
         export silently uses the function-signature defaults."""
         from pathlib import Path
-        src = Path("app.py").read_text(encoding="utf-8")
+        src = Path(_APP_PATH).read_text(encoding="utf-8")
         # Skip the "def _show_export(" line and find the call site.
         idx = 0
         while True:

@@ -24,8 +24,8 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from materials_db import MATERIALS_DB, MaterialEntry, get_materials_by_regime
-from matching_engine import MAX_DENSITY_KGM3, _get_category_exclusions
+from .materials_db import MATERIALS_DB, MaterialEntry, get_materials_by_regime
+from .matching_engine import MAX_DENSITY_KGM3, _get_category_exclusions
 
 
 # ---------------------------------------------------------------------------

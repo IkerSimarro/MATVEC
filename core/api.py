@@ -14,12 +14,12 @@ back into ``app.py``.
 
 from dataclasses import dataclass
 
-from matching_engine import match_materials, MatchResult
-from physics_engine import run_analysis, PhysicsResult
-from latex_export import generate_report, generate_tex_source
-from core.pareto import compute_pareto, ParetoResult
-from core.surrogate import find_nearest_candidates, SurrogateResult
-from core.session import SessionSchema
+from .matching_engine import match_materials, MatchResult
+from .physics_engine import run_analysis, PhysicsResult
+from .latex_export import generate_report, generate_tex_source
+from .pareto import compute_pareto, ParetoResult
+from .surrogate import find_nearest_candidates, SurrogateResult
+from .session import SessionSchema
 
 
 # ---------------------------------------------------------------------------
@@ -73,7 +73,7 @@ def apply_turbine_override(
     callers (tests, app.py's main loop) rely on it — and the returned
     PhysicsResult is the same object passed in.
     """
-    from physics_engine import _compute_structural
+    from .physics_engine import _compute_structural
 
     T_target = float(hot_section_temp_K)
     physics.thermal.T_wall_K          = T_target

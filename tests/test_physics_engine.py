@@ -6,7 +6,7 @@ stdlib unittest only. Run: python -m unittest test_physics_engine.py -v
 import math
 import unittest
 
-from physics_engine import (
+from core.physics_engine import (
     _isa_atmosphere,
     _sutton_graves,
     _tauber_sutton_rad,

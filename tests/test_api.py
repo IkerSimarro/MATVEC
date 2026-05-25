@@ -35,7 +35,7 @@ from core.presets import CANONICAL_PRESETS
 from core.session import SessionSchema, session_to_json
 
 
-_REPO_ROOT = Path(__file__).resolve().parent
+_REPO_ROOT = Path(__file__).resolve().parent.parent
 _PDFLATEX_AVAILABLE = shutil.which("pdflatex") is not None
 
 
@@ -319,7 +319,7 @@ class TestTurbineOverride(unittest.TestCase):
     def test_override_rewrites_t_wall_and_band(self):
         session = CANONICAL_PRESETS["Turbine HPT Blade"]
         # Get a pre-override physics object (without the override).
-        from physics_engine import run_analysis
+        from core.physics_engine import run_analysis
         physics = run_analysis(
             session.mach, session.alt_km, session.mass_kg,
             session.R_n_m,

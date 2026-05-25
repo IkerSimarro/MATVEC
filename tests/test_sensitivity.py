@@ -308,7 +308,7 @@ class TestNoStateLeak(unittest.TestCase):
         """A previous bug had matching_engine cache a per-call scalar
         on a MaterialEntry. This test shows that the materials_db
         is structurally identical before and after a sweep."""
-        from materials_db import MATERIALS_DB
+        from core.materials_db import MATERIALS_DB
         before_names = [m.name for m in MATERIALS_DB]
         before_count = len(MATERIALS_DB)
 

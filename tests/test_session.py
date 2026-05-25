@@ -361,7 +361,7 @@ class TestPresetParity(unittest.TestCase):
         from core.presets import CANONICAL_PRESETS
         from core.session import json_to_session
 
-        presets_dir = Path(__file__).resolve().parent / "presets"
+        presets_dir = Path(__file__).resolve().parent.parent / "presets"
         if not presets_dir.is_dir():
             self.skipTest(
                 f"{presets_dir} not present -- run "

@@ -14,9 +14,9 @@ stdlib unittest only. Run: python -m unittest test_latex_export.py -v
 
 import unittest
 
-from physics_engine import run_analysis
-from matching_engine import match_materials
-from latex_export import generate_tex_source
+from core.physics_engine import run_analysis
+from core.matching_engine import match_materials
+from core.latex_export import generate_tex_source
 
 
 def _run(mach, alt_km, mass_kg, R_n, g_load=1.0):
@@ -142,7 +142,7 @@ class TestPerVehicleFuelReference(unittest.TestCase):
 
     def test_lookup_dict_covers_propulsive_categories(self):
         """Every propulsive category has an entry; reentry/turbine do not."""
-        from latex_export import _PRIMARY_FUEL_BY_CATEGORY
+        from core.latex_export import _PRIMARY_FUEL_BY_CATEGORY
         for required in ("aircraft", "hypersonic_aircraft",
                          "hypersonic_missile", "general"):
             self.assertIn(required, _PRIMARY_FUEL_BY_CATEGORY)
@@ -336,7 +336,7 @@ class TestComponentZonesSection(unittest.TestCase):
         We can't easily reach this branch via match_materials (which validates
         category), but we can call the helper directly and confirm an empty
         return string for an unknown key."""
-        from latex_export import _sec_component_zones
+        from core.latex_export import _sec_component_zones
         physics = _run(3.0, 20.0, 1000.0, 0.20, 2.0)
         match = match_materials(physics, vehicle_category="aircraft")
         # Replace the vehicle_category on a copy of match using dataclasses:
@@ -417,7 +417,7 @@ class TestCostAxisIntegration(unittest.TestCase):
         """When cost > ceiling, the row's cost cell is wrapped in
         \\textbf{...}. Use a tight ceiling on Reentry Capsule (500 kg)
         so any UHTC/CMC entry trips it."""
-        from latex_export import generate_tex_source
+        from core.latex_export import generate_tex_source
         physics = _run(20.0, 70.0, 500.0, 1.50, 8.0)
         match = match_materials(physics, vehicle_category="reentry")
         # $100k ceiling: at 500 kg => any material > $200/kg is over.
@@ -439,7 +439,7 @@ class TestCreepEvaluationSection(unittest.TestCase):
     def _render(self, lifetime_hours: float) -> str:
         from core.api import run_session
         from core.presets import CANONICAL_PRESETS
-        from latex_export import generate_tex_source
+        from core.latex_export import generate_tex_source
         from dataclasses import replace
 
         session = replace(
@@ -491,7 +491,7 @@ class TestTransientHeatSection(unittest.TestCase):
     def _render(self, preset_key: str) -> str:
         from core.api import run_session
         from core.presets import CANONICAL_PRESETS
-        from latex_export import generate_tex_source
+        from core.latex_export import generate_tex_source
 
         session = CANONICAL_PRESETS[preset_key]
         result = run_session(session, compile_pdf=False)

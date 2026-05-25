@@ -58,8 +58,8 @@ Cross-cutting design notes
 import dataclasses
 from dataclasses import dataclass, field
 
-from physics_engine import PhysicsResult, ThermalResults, StructuralResults
-from matching_engine import match_materials, MatchResult
+from .physics_engine import PhysicsResult, ThermalResults, StructuralResults
+from .matching_engine import match_materials, MatchResult
 
 
 @dataclass(frozen=True)
