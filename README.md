@@ -126,4 +126,6 @@ If pdflatex is absent the button falls back to a `.tex` source download you can 
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+[Business Source License 1.1](LICENSE) — free for non-commercial use (personal,
+academic, student projects). Commercial deployments require a license.
+Converts to MIT automatically on 2030-05-25.
