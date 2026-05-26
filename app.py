@@ -2718,14 +2718,19 @@ def _show_export(
     col_pdf, col_tex, _ = st.columns([2, 2, 6])
     with col_pdf:
         if st.button("📄  Export Report (PDF)", use_container_width=True, key="btn_pdf"):
+            _pdf_error: str | None = None
             with st.spinner("Compiling report with pdflatex…"):
-                pdf_bytes = generate_report(
-                    physics, match_result, system_label,
-                    cost_ceiling_usd=ceiling,
-                    sensitivity=sensitivity,
-                    design_lifetime_hours=design_lifetime_hours,
-                    panel_thickness_m=panel_thickness_m,
-                )
+                try:
+                    pdf_bytes = generate_report(
+                        physics, match_result, system_label,
+                        cost_ceiling_usd=ceiling,
+                        sensitivity=sensitivity,
+                        design_lifetime_hours=design_lifetime_hours,
+                        panel_thickness_m=panel_thickness_m,
+                    )
+                except RuntimeError as _exc:
+                    pdf_bytes = None
+                    _pdf_error = str(_exc)
             if pdf_bytes:
                 st.download_button(
                     label="⬇  Download PDF Report",
@@ -2735,10 +2740,14 @@ def _show_export(
                     key="dl_pdf",
                 )
             else:
-                st.error(
-                    "pdflatex compilation failed. "
-                    "Download the LaTeX source and compile manually."
-                )
+                if _pdf_error:
+                    st.error("pdflatex compilation failed — log:")
+                    st.code(_pdf_error, language="text")
+                else:
+                    st.error(
+                        "pdflatex not found. "
+                        "Download the LaTeX source and compile manually."
+                    )
                 tex_src, _ = generate_tex_source(
                     physics, match_result, system_label,
                     cost_ceiling_usd=ceiling,

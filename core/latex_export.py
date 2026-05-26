@@ -2266,8 +2266,9 @@ def _compile_tex(tex_source: str, aux_files: dict | None = None) -> bytes | None
         tex_path = os.path.join(tmpdir, "report.tex")
         with open(tex_path, "w", encoding="utf-8") as f:
             f.write(tex_source)
+        result = None
         for _ in range(2):  # two passes for cross-references / TOC
-            subprocess.run(
+            result = subprocess.run(
                 ["pdflatex", "-interaction=nonstopmode",
                  "-output-directory", tmpdir, tex_path],
                 capture_output=True,
@@ -2277,7 +2278,11 @@ def _compile_tex(tex_source: str, aux_files: dict | None = None) -> bytes | None
         if os.path.exists(pdf_path):
             with open(pdf_path, "rb") as f:
                 return f.read()
-        return None
+        # Surface the pdflatex log so callers can show a useful error message.
+        log = ""
+        if result is not None:
+            log = (result.stdout or b"").decode("utf-8", errors="replace")[-3000:]
+        raise RuntimeError(f"pdflatex produced no PDF.\n\n{log}")
 
 
 # ---------------------------------------------------------------------------
@@ -2380,5 +2385,12 @@ def generate_report(
             panel_thickness_m=panel_thickness_m,
         )
         return _compile_tex(tex_source, aux_files)
-    except (FileNotFoundError, subprocess.TimeoutExpired, OSError):
+    except FileNotFoundError:
+        # pdflatex not installed on this machine.
         return None
+    except (subprocess.TimeoutExpired, OSError):
+        return None
+    except RuntimeError:
+        # pdflatex was found but failed to produce a PDF — re-raise so the
+        # caller can surface the log to the user for debugging.
+        raise
