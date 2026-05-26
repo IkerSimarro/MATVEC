@@ -10,8 +10,7 @@ You define the vehicle (Mach number, altitude, mass, g-load, mission duration) a
 
 ## Live demo
 
-<!-- Add Streamlit Cloud link once deployed -->
-*Coming soon — deploying to Streamlit Cloud*
+**[https://matvec.streamlit.app](https://matvec.streamlit.app)**
 
 ---
 
