@@ -10,7 +10,11 @@ You define the vehicle (Mach number, altitude, mass, g-load, mission duration) a
 
 ## Live demo
 
+<<<<<<< HEAD
 **[https://matvec.streamlit.app](https://matvec.streamlit.app)**
+=======
+https://matvec.streamlit.app/
+>>>>>>> 384b84d2265852bc029146674e02c5f41185aa64
 
 ---
 
